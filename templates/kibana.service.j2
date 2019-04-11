@@ -1,0 +1,24 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Kibana
+Documentation=http://www.elastic.co
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+
+User={{ kibana_user }}
+Group={{ kibana_group }}
+
+WorkingDirectory={{ kibana_home }}
+
+Environment=KIBANA_HOME={{ kibana_home }}
+Environment=CONFIG_PATH={{ kibana_conf_dir }}/kibana.yml
+
+ExecStart={{ kibana_home }}/bin/kibana
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

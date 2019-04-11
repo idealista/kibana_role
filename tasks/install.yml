@@ -1,0 +1,76 @@
+---
+
+- name: Kibana | Installing dependencies
+  apt:
+    pkg: "{{ kibana_required_libs }}"
+    state: present
+
+- name: Kibana | Ensure Kibana group
+  group:
+    name: "{{ kibana_group }}"
+    system: true
+
+- name: Kibana | Ensure Kibana user
+  user:
+    name: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+    shell: /bin/false
+    createhome: true
+    home: "{{ kibana_user_home_dir }}"
+
+- name: Kibana | Check installed version
+  command: "{{ kibana_home }}/bin/kibana --version"
+  register: kibana_version_check
+  changed_when: false
+  ignore_errors: true
+
+- name: Kibana | Stop service
+  systemd:
+    name: kibana
+    state: stopped
+  when: |
+      kibana_force_reinstall or
+      kibana_version_check is failed or
+      kibana_version_check.stdout != kibana_version
+  ignore_errors: true
+
+- name: Kibana | Remove old version
+  file:
+    path: "{{ kibana_home }}"
+    state: absent
+  when: |
+      kibana_force_reinstall or
+      kibana_version_check is failed or
+      kibana_version_check.stdout != kibana_version
+
+- name: Kibana | Ensure Kibana home dir exist
+  file:
+    path: "{{ kibana_home }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+  when: |
+      kibana_force_reinstall or
+      kibana_version_check is failed or
+      kibana_version_check.stdout != kibana_version
+
+- name: Kibana | Untar Kibana
+  unarchive:
+    extra_opts: ['--strip-components=1']
+    src: "{{ kibana_package_url }}"
+    remote_src: true
+    dest: "{{ kibana_home }}"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+  when: |
+      kibana_force_reinstall or
+      kibana_version_check is failed or
+      kibana_version_check.stdout != kibana_version
+
+- name: Kibana | Create systemd service
+  template:
+    src: kibana.service.j2
+    dest: "{{ kibana_systemd_file }}"
+    mode: 0644
+  notify:
+    - restart kibana

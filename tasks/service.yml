@@ -1,0 +1,22 @@
+---
+
+- name: Kibana | Starting service
+  systemd:
+    name: kibana
+    state: "{{ kibana_service_state }}"
+    enabled: "{{ kibana_service_enabled }}"
+    daemon_reload: true
+
+- name: Kibana | Force handlers
+  meta: flush_handlers
+
+- name: Kibana | Wait for service listening
+  wait_for:
+    host: "{{ kibana_server_host }}"
+    port: "{{ kibana_server_port }}"
+    state: "{{ kibana_service_state }}"
+    delay: 5
+    timeout: 300
+  when:
+    - kibana_service_enabled
+    - kibana_service_state == "started"

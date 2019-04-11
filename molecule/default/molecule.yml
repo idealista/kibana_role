@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: kibana
+    hostname: kibana
+    image: idealista/jdk:8u181-stretch-openjdk-headless
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    groups:
+      - kibana-group
+    command: '/lib/systemd/systemd'
+    networks:
+      - name: kibana-network
+        aliases:
+          - kibana
+    published_ports:
+      - 9200:9200
+      - 9300:9300
+      - 5601:5601

@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  company: Idealista S.A.U
+  author: idealista
+  description: Kibana role
+  min_ansible_version: 2.7.5.0
+  license: Apache 2.0
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+  galaxy_tags:
+    - web
+    - system
+    - monitoring
+    - kibana
+    - elk
+    - efk
+    - logging
+    - dataviz

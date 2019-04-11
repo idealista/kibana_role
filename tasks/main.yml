@@ -1,0 +1,16 @@
+---
+
+- name: Kibana | Install
+  import_tasks: install.yml
+  tags:
+    - kibana_install
+
+- name: Kibana | Configure
+  import_tasks: config.yml
+  tags:
+    - kibana_configure
+
+- name: Kibana | Service
+  import_tasks: service.yml
+  tags:
+    - kibana_service

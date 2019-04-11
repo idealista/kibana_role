@@ -1,0 +1,6 @@
+---
+
+- src: http://git.sys.idealista/scm/as/elasticsearch_role.git
+  scm: git
+  version: 1.0.0
+  name: elasticsearch_role

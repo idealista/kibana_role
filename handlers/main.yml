@@ -1,0 +1,7 @@
+---
+
+- name: restart kibana
+  systemd:
+    name: kibana
+    state: restarted
+  when: kibana_service_state != 'stopped'

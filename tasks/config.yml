@@ -1,0 +1,22 @@
+---
+
+- name: Kibana | Ensure Kibana dirs exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+  loop:
+    - "{{ kibana_conf_dir }}"
+    - "{{ kibana_log_dir }}"
+    - "{{ kibana_pid_dir }}"
+    - "{{ kibana_data_dir }}"
+
+- name: Kibana | Configuring Kibana
+  template:
+    src: kibana.yml.j2
+    dest: "{{ kibana_conf_dir }}/kibana.yml"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+    mode: 0660
+  notify: restart kibana

@@ -1,0 +1,32 @@
+---
+
+## General
+kibana_version: 6.7.0
+kibana_force_reinstall: false
+
+# Owner
+kibana_user: kibana
+kibana_group: kibana
+kibana_user_home_dir: /home/{{ kibana_user }}
+
+# Start on boot
+kibana_service_enabled: true
+
+# Current state: started, stopped
+kibana_service_state: started
+
+# Files & Paths
+kibana_home: /opt/kibana
+kibana_conf_dir: "{{ kibana_home }}/config"
+kibana_log_dir: /var/log/kibana
+kibana_data_dir: /var/lib/kibana
+kibana_pid_dir: /var/run/kibana
+
+# Hosts & ports
+kibana_server_host: "0.0.0.0"
+kibana_server_port: 5601
+
+# Elasticsearch
+kibana_elasticsearch_hosts: ['http://localhost:9200']
+kibana_elasticsearch_username:
+kibana_elasticsearch_password:
