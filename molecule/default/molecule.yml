@@ -13,7 +13,7 @@ platforms:
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     groups:
-      - kibana-group
+      - kibana
     command: '/lib/systemd/systemd'
     networks:
       - name: kibana-network

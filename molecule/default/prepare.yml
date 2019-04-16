@@ -12,5 +12,5 @@
       reload: true
   - name: Install Elasticsearch
     include_role: 
-      name: elasticsearch_role
+      name: elasticsearch
 
