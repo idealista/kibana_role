@@ -51,6 +51,27 @@ Create or add to your roles dependency file (e.g requirements.yml):
   name: kibana
 ```
 
+or using [Ansible Galaxy](https://galaxy.ansible.com/idealista/kibana_role/) as origin if you prefer:
+
+```
+- src: idealista.kibana_role
+```
+
+Install the role with ansible-galaxy command:
+
+```
+ansible-galaxy install -p roles -r requirements.yml -f
+```
+
+Use in a playbook:
+
+```
+---
+- hosts: someserver
+  roles:
+    - { role: azkaban }
+```
+
 Install the role with ansible-galaxy command:
 
 ```sh
