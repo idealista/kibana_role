@@ -65,21 +65,6 @@ ansible-galaxy install -p roles -r requirements.yml -f
 
 Use in a playbook:
 
-```
----
-- hosts: someserver
-  roles:
-    - { role: azkaban }
-```
-
-Install the role with ansible-galaxy command:
-
-```sh
-ansible-galaxy install -p roles -r requirements.yml -f
-```
-
-Use in a playbook:
-
 ```yml
 ---
 - hosts: someserver
