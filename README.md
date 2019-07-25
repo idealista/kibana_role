@@ -17,9 +17,9 @@
 
 ## Getting Started
 
-**THIS ROLE IS FOR 6.x**
+**THIS ROLE IS FOR 6.x-7.x**
 
-Ansible role for 6.x Kibana. Currently this works on Debian based linux systems. Tested platforms are:
+Ansible role for 6.x-7.x Kibana. Currently this works on Debian based linux systems. Tested platforms are:
 
 * Debian 8
 * Debian 9
