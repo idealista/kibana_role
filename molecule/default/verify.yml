@@ -22,7 +22,7 @@
   vars_files:
     - ../../defaults/main.yml
     - ../../vars/main.yml
-    - ./group_vars/kibana/main.yml
+    - ./group_vars/kibana_group/main.yml
 
   tasks:
     - name: Download and install goss
