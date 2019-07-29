@@ -3,7 +3,7 @@
 kibana_required_libs:
   - apt-transport-https
 
-kibana_build_name: "kibana-{{ kibana_version }}-linux-x86_64"
+kibana_build_name: "kibana-{{ (kibana_oss_version) | ternary ('oss-', '')}}{{ kibana_version }}-linux-x86_64"
 kibana_package: "{{ kibana_build_name }}.tar.gz"
 kibana_package_url: "https://artifacts.elastic.co/downloads/kibana/{{ kibana_package }}"
 

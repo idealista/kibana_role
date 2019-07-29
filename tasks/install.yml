@@ -19,7 +19,7 @@
     home: "{{ kibana_user_home_dir }}"
 
 - name: Kibana | Check installed version
-  command: "{{ kibana_home }}/bin/kibana --version"
+  command: "{{ kibana_home }}/bin/kibana --version --allow-root"
   register: kibana_version_check
   changed_when: false
   ignore_errors: true

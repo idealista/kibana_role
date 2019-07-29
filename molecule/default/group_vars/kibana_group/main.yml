@@ -12,6 +12,7 @@ elasticsearch_config:
   node.ingest: true
   node.ml: false
   cluster.remote.connect: false
+  discovery.type: single-node
   http.cors.enabled: true
   http.cors.allow-origin: "*"
   xpack.security.enabled: false

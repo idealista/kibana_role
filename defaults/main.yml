@@ -3,7 +3,7 @@
 ## General
 kibana_version: 6.7.1
 kibana_force_reinstall: false
-
+kibana_oss_version: false
 # Owner
 kibana_user: kibana
 kibana_group: kibana
