@@ -11,12 +11,14 @@ Type=simple
 User={{ kibana_user }}
 Group={{ kibana_group }}
 
+RuntimeDirectory={{ kibana_runtime_dir }}
 WorkingDirectory={{ kibana_home }}
 
 Environment=KIBANA_HOME={{ kibana_home }}
 Environment=CONFIG_PATH={{ kibana_conf_dir }}/kibana.yml
 
-ExecStart={{ kibana_home }}/bin/kibana
+ExecStart={{ kibana_home }}/bin/kibana -p {{ kibana_pid_dir }}/kibana.pid --quiet
+PIDFile={{ kibana_pid_dir }}/kibana.pid
 
 Restart=always
 
