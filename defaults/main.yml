@@ -20,7 +20,8 @@ kibana_home: /opt/kibana
 kibana_conf_dir: "{{ kibana_home }}/config"
 kibana_log_dir: /var/log/kibana
 kibana_data_dir: /var/lib/kibana
-kibana_pid_dir: /var/run/kibana
+kibana_runtime_dir: kibana
+kibana_pid_dir: "/var/run/{{ kibana_runtime_dir }}"
 
 # Hosts & ports
 kibana_server_host: "0.0.0.0"
