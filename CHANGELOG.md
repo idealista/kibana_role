@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
 
+## [1.1.1](https://github.com/idealista/kibana_role/tree/1.1.1)
+### Fixed
+- *Fix pid directory creation error in start* @acuervof
+
 ## [1.1.0](https://github.com/idealista/kibana_role/tree/1.1.0)
 ### Added
 - [#1](https://github.com/idealista/kibana_role/issues/1) *Support of oss version with new molecule scenario **oss*** @adrian-arapiles
