@@ -27,6 +27,10 @@ kibana_pid_dir: "/var/run/{{ kibana_runtime_dir }}"
 kibana_server_host: "0.0.0.0"
 kibana_server_port: 5601
 
+# Extra config to kibana.yml
+#kibana_config:
+#  xpack.monitoring.kibana.collection.enabled: false
+
 # Elasticsearch
 kibana_elasticsearch_hosts: ['http://localhost:9200']
 kibana_elasticsearch_username:
