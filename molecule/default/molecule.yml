@@ -6,22 +6,17 @@ driver:
 platforms:
   - name: kibana
     hostname: kibana
-    image: idealista/jdk:8u181-stretch-openjdk-headless
-    privileged: false
+    image: idealista/jdk:8u222-stretch-openjdk-headless
+    privileged: true
     capabilities:
       - SYS_ADMIN
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      - '/sys/fs/fuse/connections:/sys/fs/fuse/connections:ro'
-      - '/dev/hugepages:/dev/hugepages'
     groups:
       - kibana_group
     tmpfs:
-      - '/tmp'
       - '/run'
       - '/run/lock'
-    devices:
-      - '/dev/fuse:/dev/fuse'
     command: '/lib/systemd/systemd'
     networks:
       - name: kibana-network
