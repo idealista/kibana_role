@@ -7,7 +7,7 @@ platforms:
   - name: kibana
     hostname: kibana
     image: idealista/jdk:8u222-stretch-openjdk-headless
-    privileged: false
+    privileged: true
     capabilities:
       - SYS_ADMIN
     volumes:
