@@ -10,14 +10,10 @@ elasticsearch_config:
   node.data: true
   node.master: true
   node.ingest: true
-  node.ml: false
   cluster.remote.connect: false
   discovery.type: single-node
   http.cors.enabled: true
   http.cors.allow-origin: "*"
-  xpack.security.enabled: false
-  xpack.ml.enabled: false
-  xpack.monitoring.collection.enabled: true
 
 kibana_version: 6.7.1
 kibana_elasticsearch_hosts: ['http://{{ elasticsearch_api_host }}:{{ elasticsearch_api_port }}']
