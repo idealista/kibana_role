@@ -14,6 +14,7 @@
   user:
     name: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
+    system: true
     shell: /bin/false
     createhome: true
     home: "{{ kibana_user_home_dir }}"

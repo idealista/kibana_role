@@ -121,3 +121,7 @@ logging.dest: {{ kibana_log_dir }}/kibana.log
 
 # The path where Kibana stores persistent data not saved in Elasticsearch.
 path.data: {{ kibana_data_dir }}
+
+{% if kibana_config is defined %}
+{{ kibana_config | to_nice_yaml }}
+{% endif %}
