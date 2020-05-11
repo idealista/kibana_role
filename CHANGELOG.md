@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
+
+## [1.2.0](https://github.com/idealista/kibana_role/tree/1.2.0)
 ### Added
 - [#6](https://github.com/idealista/kibana_role/issues/6) *Add support of custom parameters to kibana.yml* @adrian-arapiles
 - Upgraded test-requirements @adrian-arapiles
