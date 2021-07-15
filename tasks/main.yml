@@ -1,14 +1,8 @@
 ---
-
-- name: Kibana | Install
-  import_tasks: install.yml
+- name: Kibana | Install for {{ install_mode }}
+  include_tasks: "{{ install_mode }}/main.yml"
   tags:
     - kibana_install
-
-- name: Kibana | Configure
-  import_tasks: config.yml
-  tags:
-    - kibana_configure
 
 - name: Kibana | Service
   import_tasks: service.yml

@@ -1,9 +1,9 @@
 ---
-
 - name: Kibana | Installing dependencies
   apt:
-    pkg: "{{ kibana_required_libs }}"
+    name: "{{ kibana_required_libs }}"
     state: present
+    update_cache: true
 
 - name: Kibana | Ensure Kibana group
   group:
@@ -16,23 +16,23 @@
     group: "{{ kibana_group }}"
     system: true
     shell: /bin/false
-    createhome: true
-    home: "{{ kibana_user_home_dir }}"
 
 - name: Kibana | Check installed version
-  command: "{{ kibana_home }}/bin/kibana --version --allow-root"
+  command: "{{ kibana_home }}/bin/kibana --version"
   register: kibana_version_check
+  become: yes
+  become_user: "{{ kibana_user }}"
   changed_when: false
-  ignore_errors: true
+  failed_when: false
 
 - name: Kibana | Stop service
   systemd:
     name: kibana
     state: stopped
   when: |
-      kibana_force_reinstall or
-      kibana_version_check is failed or
-      kibana_version_check.stdout != kibana_version
+    kibana_force_reinstall or
+    kibana_version_check is failed or
+    kibana_version_check.stdout != kibana_version
   ignore_errors: true
 
 - name: Kibana | Remove old version
@@ -40,9 +40,9 @@
     path: "{{ kibana_home }}"
     state: absent
   when: |
-      kibana_force_reinstall or
-      kibana_version_check is failed or
-      kibana_version_check.stdout != kibana_version
+    kibana_force_reinstall or
+    kibana_version_check is failed or
+    kibana_version_check.stdout != kibana_version
 
 - name: Kibana | Ensure Kibana home dir exist
   file:
@@ -50,10 +50,11 @@
     state: directory
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
+    mode: 0755
   when: |
-      kibana_force_reinstall or
-      kibana_version_check is failed or
-      kibana_version_check.stdout != kibana_version
+    kibana_force_reinstall or
+    kibana_version_check is failed or
+    kibana_version_check.stdout != kibana_version
 
 - name: Kibana | Untar Kibana
   unarchive:
@@ -64,14 +65,6 @@
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
   when: |
-      kibana_force_reinstall or
-      kibana_version_check is failed or
-      kibana_version_check.stdout != kibana_version
-
-- name: Kibana | Create systemd service
-  template:
-    src: kibana.service.j2
-    dest: "{{ kibana_systemd_file }}"
-    mode: 0644
-  notify:
-    - restart kibana
+    kibana_force_reinstall or
+    kibana_version_check is failed or
+    kibana_version_check.stdout != kibana_version

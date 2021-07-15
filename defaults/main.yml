@@ -1,35 +1,76 @@
 ---
 
 ## General
-kibana_version: 6.7.1
+# Tar as default or 'deb' for install as deb package
+install_mode: tar
+
+# You can see default version in vars/{{ install_mode }}.yml
+kibana_version: "{{ __kibana_version }}"
+# By default role install oss version, change this value to 'basic' if you want official distribution
+# PD. Check version too because oss and official mismatch version release.
+kibana_license_type: "{{ __kibana_license_type }}"
+
+## Opendistro
+# You can see default version in vars/opendistro.yml
+# Please check (https://opendistro.github.io/for-elasticsearch-docs/version-history/) elastic-oss and opendistro
+# version to configure properly the compatibility of both
+opendistro_version: "{{ __opendistro_version }}"
+# State of opendistrokibana deb package
+opendistro_package_state: "{{ __opendistro_package_state }}"
+opendistro_gpg_key: "{{ __opendistro_gpg_key }}"
+opendistro_ppa_source: "{{ __opendistro_ppa_source }}"
+# By default opendistro is not installed, set this to true for install opendistro
+install_opendistro: false
+# By default security is disabled. If you want to enable put true and configure steps and file config
+# https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/
+kibana_opendistro_security_enabled: false
+
+## Deb
+# State of kibana deb package
+kibana_package_state: "{{ __kibana_package_state }}"
+kibana_gpg_key: "{{ __kibana_gpg_key }}"
+kibana_ppa_source: "{{ __kibana_ppa_source }}"
+
+## Tar
+# List of templates to kibana conf folder, for example kibana.yml
+kibana_config_templates_files: "{{ __kibana_config_templates_files }}"
+# Force to reinstall kibana even if is same version installed
 kibana_force_reinstall: false
-kibana_oss_version: false
+
 # Owner
 kibana_user: kibana
 kibana_group: kibana
-kibana_user_home_dir: /home/{{ kibana_user }}
 
+## Service
 # Start on boot
-kibana_service_enabled: true
+kibana_service_enabled: "{{ __kibana_service_enabled }}"
 
 # Current state: started, stopped
-kibana_service_state: started
+kibana_service_state: "{{ __kibana_service_state }}"
+
+kibana_private_tmp: false
+# If want to apply any extra config to kibana.service
+kibana_service_config_path: /etc/systemd/system/kibana.service.d
+# If want to apply environment variables
+# You can see examples in any molecule scenario of this repo
+# kibana_service_dropin_template: "{{ playbook_dir }}/templates/kibana/service.conf"
 
 # Files & Paths
-kibana_home: /opt/kibana
-kibana_conf_dir: "{{ kibana_home }}/config"
-kibana_log_dir: /var/log/kibana
-kibana_data_dir: /var/lib/kibana
+kibana_home: "{{ __kibana_home }}"
+kibana_conf_dir: "{{ __kibana_conf_dir }}"
+kibana_log_dir: "{{ __kibana_log_dir }}"
+kibana_data_dir: "{{ __kibana_data_dir }}"
 kibana_runtime_dir: kibana
-kibana_pid_dir: "/var/run/{{ kibana_runtime_dir }}"
+kibana_pid_dir: "/run/{{ kibana_runtime_dir }}"
+
+## Kibana config
+# Extra config to kibana.yml
+# kibana_config:
+#   xpack.monitoring.kibana.collection.enabled: false
 
 # Hosts & ports
 kibana_server_host: "0.0.0.0"
 kibana_server_port: 5601
-
-# Extra config to kibana.yml
-# kibana_config:
-#   xpack.monitoring.kibana.collection.enabled: false
 
 # Elasticsearch
 kibana_elasticsearch_hosts: ['http://localhost:9200']

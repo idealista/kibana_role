@@ -6,6 +6,7 @@
     state: directory
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
+    mode: 0755
   loop:
     - "{{ kibana_conf_dir }}"
     - "{{ kibana_log_dir }}"
@@ -18,5 +19,13 @@
     dest: "{{ kibana_conf_dir }}/kibana.yml"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
-    mode: 0660
+    mode: 0644
   notify: restart kibana
+
+- name: Kibana | Create systemd service
+  template:
+    src: kibana.service.j2
+    dest: "{{ kibana_systemd_file }}"
+    mode: 0644
+  notify:
+    - restart kibana

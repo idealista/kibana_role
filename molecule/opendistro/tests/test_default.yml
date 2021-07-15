@@ -1,0 +1,23 @@
+---
+
+group:
+  {{ kibana_group }}:
+    exists: true
+    gid:
+      lt: 1000
+user:
+  {{ kibana_user }}:
+    exists: true
+    uid:
+      lt: 1000
+    groups:
+      - {{ kibana_group }}
+
+port:
+  tcp:{{ kibana_server_port }}:
+    listening: true
+    
+service:
+  kibana:
+    enabled: true
+    running: true

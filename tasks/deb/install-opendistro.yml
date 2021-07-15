@@ -1,0 +1,27 @@
+---
+- name: Kibana | Include vars for opendistro
+  include_vars: vars/opendistro.yml
+
+- name: Kibana | Installing dependencies
+  apt:
+    name: "{{ kibana_required_libs }}"
+    state: present
+    update_cache: true
+
+- name: Kibana | Add gpg key
+  apt_key:
+    url: "{{ opendistro_gpg_key }}"
+    state: present
+
+- name: Kibana | Add ppa repository
+  apt_repository:
+    repo: "{{ opendistro_ppa_source }}"
+    state: present
+    filename: elasticsearch_opendistro
+
+- name: Kibana | Install kibana_opendistro {{ opendistro_version }}
+  apt:
+    name: "opendistroforelasticsearch-kibana={{ opendistro_version }}"
+    update_cache: true
+    state: "{{ opendistro_package_state }}"
+  notify: restart kibana
