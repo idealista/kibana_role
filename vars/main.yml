@@ -1,10 +1,14 @@
 ---
+## General
+__kibana_version: 7.10.2
+__kibana_license_type: oss
 
-kibana_required_libs:
-  - apt-transport-https
+kibana_basic_license: kibana
+kibana_oss_license: kibana-oss
 
-kibana_build_name: "kibana-{{ (kibana_oss_version) | ternary ('oss-', '')}}{{ kibana_version }}-linux-x86_64"
-kibana_package: "{{ kibana_build_name }}.tar.gz"
-kibana_package_url: "https://artifacts.elastic.co/downloads/kibana/{{ kibana_package }}"
+## Service
+# Start on boot
+__kibana_service_enabled: true
 
-kibana_systemd_file: /etc/systemd/system/kibana.service
+# Current state: started, stopped
+__kibana_service_state: started

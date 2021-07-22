@@ -1,0 +1,45 @@
+---
+
+- name: Kibana | Ensure Kibana dirs exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+    recurse: yes
+    mode: u=rwX,g=rX,o=rX
+  loop:
+    - "{{ kibana_conf_dir }}"
+    - "{{ kibana_log_dir }}"
+    - "{{ kibana_pid_dir }}"
+    - "{{ kibana_data_dir }}"
+    - "{{ kibana_home }}"
+
+- name: Create and config drop-in service config
+  block:
+    - name: Create kibana drop-in service config
+      file:
+        path: "{{ kibana_service_config_path }}"
+        owner: "{{ kibana_user }}"
+        group: "{{ kibana_group }}"
+        mode: 0755
+        state: directory
+
+    - name: Add drop-in file config to elastic service
+      template:
+        src: "{{ kibana_service_dropin_template }}"
+        dest: "{{ kibana_service_config_path }}/{{ kibana_service_dropin_template | basename }}"
+        owner: "{{ kibana_user }}"
+        group: "{{ kibana_group }}"
+        mode: 0644
+  when: kibana_service_dropin_template is defined
+
+- name: Kibana | Configuring Kibana
+  template:
+    src: "{{ item }}"
+    dest: "{{ kibana_conf_dir }}/{{ item | basename | regex_replace('.j2','') }}"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_group }}"
+    mode: 0644
+  loop: "{{ kibana_config_templates_files }}"
+  notify: restart kibana

@@ -6,6 +6,7 @@
     state: "{{ kibana_service_state }}"
     enabled: "{{ kibana_service_enabled }}"
     daemon_reload: true
+  register: kibana_service_output
 
 - name: Kibana | Force handlers
   meta: flush_handlers

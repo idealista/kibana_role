@@ -3,12 +3,23 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
 
+## [2.0.0](https://github.com/idealista/kibana_role/tree/2.0.0)
+### Added
+- [#16](https://github.com/idealista/kibana_role/issues/16) *Support for install kibana as unzipped tar as previous versions for default installation mode* @adrian-arapiles
+- [#16](https://github.com/idealista/kibana_role/issues/16) *Support for install kibana as debian service.* @adrian-arapiles
+- [#16](https://github.com/idealista/kibana_role/issues/16) *Support for install kibana (opendistroelasticsearch distribution).* @adrian-arapiles
+
+### Changed
+- *Update test-requirements dependencies and goss* @adrian-arapiles
+- *Update default versions to current* @adrian-arapiles
+- *Tests with stretch and buster distribution* @adrian-arapiles
+
 ## [1.2.0](https://github.com/idealista/kibana_role/tree/1.2.0)
 ### Added
 - [#6](https://github.com/idealista/kibana_role/issues/6) *Add support of custom parameters to kibana.yml* @adrian-arapiles
-- Upgraded test-requirements @adrian-arapiles
-- Added Pipfile and Pipfile.lock @adrian-arapiles
-- Remove unnecessary files of molecule @adrian-arapiles
+- *Upgraded test-requirements*   @adrian-arapiles
+- *Added Pipfile and Pipfile.lock* @adrian-arapiles
+- *Remove unnecessary files of molecule* @adrian-arapiles
 
 ## [1.1.1](https://github.com/idealista/kibana_role/tree/1.1.1)
 ### Fixed

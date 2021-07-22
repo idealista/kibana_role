@@ -1,24 +1,27 @@
 ---
 
-version: 7.2.0
+version: 7.10.2
 elasticsearch_version: "{{ version }}"
 elasticsearch_api_host: kibana
 elasticsearch_api_port: 9200
 elasticsearch_license_type: oss
+elasticsearch_service_dropin_template: "{{ playbook_dir }}/templates/elasticsearch/service.conf"
+
 elasticsearch_config:
   node.name: "{{ elasticsearch_api_host }}"
+  cluster.name: idealista-cluster
   network.host: _site_
   bootstrap.memory_lock: true
   node.data: true
   node.master: true
   node.ingest: true
   discovery.type: single-node
-  cluster.remote.connect: false
-  http.cors.enabled: true
-  http.cors.allow-origin: "*"
 
 kibana_version: "{{ version }}"
-kibana_oss_version: true
+kibana_license_type: oss
 kibana_user: kibana
 kibana_group: kibana
 kibana_elasticsearch_hosts: ['http://{{ elasticsearch_api_host }}:{{ elasticsearch_api_port }}']
+
+elasticsearch_heap_size: "256m"
+elasticsearch_os_tuning: false
