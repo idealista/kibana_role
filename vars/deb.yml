@@ -1,0 +1,16 @@
+---
+kibana_required_libs:
+  - unzip
+  - apt-transport-https
+
+## General
+__kibana_package_state: present
+
+# Files & Paths
+__kibana_home: /usr/share/kibana
+__kibana_conf_dir: /etc/kibana
+__kibana_log_dir: /var/log/kibana
+__kibana_data_dir: /var/lib/kibana
+
+__kibana_config_templates_files:
+  - kibana.yml.j2

@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/idealista/kibana_role/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/kibana_role.png)](https://travis-ci.org/idealista/kibana_role)
+[![Build Status](https://travis-ci.com/idealista/kibana_role.png)](https://travis-ci.com/idealista/kibana_role)
 
 # Kibana Ansible role
 

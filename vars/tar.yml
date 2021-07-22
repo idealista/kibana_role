@@ -1,0 +1,22 @@
+---
+kibana_required_libs:
+  - apt-transport-https
+
+## Tar package
+kibana_build_name: "{{ kibana_license }}-{{ kibana_version }}-linux-x86_64"
+kibana_package: "{{ kibana_build_name }}.tar.gz"
+kibana_package_url: "https://artifacts.elastic.co/downloads/kibana/{{ kibana_package }}"
+
+# Service
+kibana_systemd_file: /etc/systemd/system/kibana.service
+
+# Files & Paths
+__kibana_home: /opt/kibana
+__kibana_conf_dir: "{{ kibana_home }}/config"
+__kibana_log_dir: /var/log/kibana
+__kibana_data_dir: /var/lib/kibana
+kibana_runtime_dir: kibana
+kibana_pid_dir: "/run/{{ kibana_runtime_dir }}"
+
+__kibana_config_templates_files:
+  - kibana.yml.j2
