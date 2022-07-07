@@ -11,6 +11,8 @@
   - name: Kibana | Define kibana variables
     set_fact:
       kibana_license: "{{ lookup('vars', 'kibana_' ~ kibana_license_type ~ '_license') }}"
+  tags:
+    - always
 
 - name: Kibana | Install
   include_tasks: install.yml

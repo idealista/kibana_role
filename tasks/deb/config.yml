@@ -7,13 +7,14 @@
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
     recurse: yes
-    mode: u=rwX,g=rX,o=rX
   loop:
     - "{{ kibana_conf_dir }}"
     - "{{ kibana_log_dir }}"
     - "{{ kibana_pid_dir }}"
     - "{{ kibana_data_dir }}"
     - "{{ kibana_home }}"
+  tags:
+    - kibana_configure
 
 - name: Create and config drop-in service config
   block:
@@ -33,6 +34,8 @@
         group: "{{ kibana_group }}"
         mode: 0644
   when: kibana_service_dropin_template is defined
+  tags:
+    - kibana_configure
 
 - name: Kibana | Configuring Kibana
   template:
@@ -43,3 +46,5 @@
     mode: 0644
   loop: "{{ kibana_config_templates_files }}"
   notify: restart kibana
+  tags:
+    - kibana_configure

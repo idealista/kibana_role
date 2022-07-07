@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
 
+### Added
+- *Add fqcn to warn-list due to ansible-lint* @adrian-arapiles
+- *Add tags on tasks* @adrian-arapiles
+
+### Changed
+- *Update requirements dependencies to latest* @adrian-arapiles
+- *Remove step changing folders on deb installation due an idempotence error* @adrian-arapiles
+- *Update docker base image buster* @adrian-arapiles
+
 ## [2.0.0](https://github.com/idealista/kibana_role/tree/2.0.0)
 ### Added
 - [#16](https://github.com/idealista/kibana_role/issues/16) *Support for install kibana as unzipped tar as previous versions for default installation mode* @adrian-arapiles

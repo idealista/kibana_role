@@ -4,11 +4,15 @@
     name: "{{ kibana_required_libs }}"
     state: present
     update_cache: true
+  tags:
+    - kibana_install
 
 - name: Kibana | Ensure Kibana group
   group:
     name: "{{ kibana_group }}"
     system: true
+  tags:
+    - kibana_install
 
 - name: Kibana | Ensure Kibana user
   user:
@@ -16,6 +20,8 @@
     group: "{{ kibana_group }}"
     system: true
     shell: /bin/false
+  tags:
+    - kibana_install
 
 - name: Kibana | Check installed version
   command: "{{ kibana_home }}/bin/kibana --version"
@@ -24,6 +30,8 @@
   become_user: "{{ kibana_user }}"
   changed_when: false
   failed_when: false
+  tags:
+    - kibana_install
 
 - name: Kibana | Stop service
   systemd:
@@ -33,7 +41,9 @@
     kibana_force_reinstall or
     kibana_version_check is failed or
     kibana_version_check.stdout != kibana_version
-  ignore_errors: true
+  failed_when: false
+  tags:
+    - kibana_install
 
 - name: Kibana | Remove old version
   file:
@@ -43,6 +53,8 @@
     kibana_force_reinstall or
     kibana_version_check is failed or
     kibana_version_check.stdout != kibana_version
+  tags:
+    - kibana_install
 
 - name: Kibana | Ensure Kibana home dir exist
   file:
@@ -55,6 +67,8 @@
     kibana_force_reinstall or
     kibana_version_check is failed or
     kibana_version_check.stdout != kibana_version
+  tags:
+    - kibana_install
 
 - name: Kibana | Untar Kibana
   unarchive:
@@ -68,3 +82,5 @@
     kibana_force_reinstall or
     kibana_version_check is failed or
     kibana_version_check.stdout != kibana_version
+  tags:
+    - kibana_install

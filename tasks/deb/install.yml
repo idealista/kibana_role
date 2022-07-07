@@ -4,24 +4,34 @@
     name: "{{ kibana_required_libs }}"
     state: present
     update_cache: true
+  tags:
+    - kibana_install
 
 - name: Kibana | Include vars elasticco
   include_vars: vars/elasticco.yml
+  tags:
+    - kibana_install
 
 - name: Kibana | Define kibana variables
   set_fact:
     kibana_ppa_source: "{{ lookup('vars', '__kibana_ppa_source_' ~  kibana_license_type) }}"
+  tags:
+    - kibana_install
 
 - name: Kibana | Add gpg key
   apt_key:
     url: "{{ kibana_gpg_key }}"
     state: present
+  tags:
+    - kibana_install
 
 - name: Kibana | Add ppa repository
   apt_repository:
     repo: "{{ kibana_ppa_source }}"
     state: present
     filename: kibana
+  tags:
+    - kibana_install
 
 - name: Kibana | Install kibana {{ kibana_version }}
   apt:
@@ -30,3 +40,5 @@
     state: "{{ kibana_package_state }}"
   loop:
     - "{{ (kibana_license_type == 'oss') | ternary('kibana-oss', 'kibana') }}"
+  tags:
+    - kibana_install

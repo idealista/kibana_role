@@ -9,7 +9,7 @@ lint: |
 platforms:
   - name: kibana
     hostname: kibana
-    image: ${MOLECULE_DISTRO:-idealista/jdk:11.0.8-buster-openjdk-headless}
+    image: ${MOLECULE_DISTRO:-idealista/jdk:11.0.14-buster-openjdk-headless}
     privileged: false
     capabilities:
       - SYS_ADMIN
@@ -34,7 +34,7 @@ provisioner:
     group_vars:
       kibana_group:
         java_open_jdk_home: ${JAVA_JDK_HOME:-/usr/lib/jvm/java-11-openjdk-amd64}
-        kibana_version: ${KIBANA_VERSION:-7.13.2}
+        kibana_version: ${KIBANA_VERSION:-7.17.4}
   env:
     ANSIBLE_FORCE_COLOR: 1
     PY_COLORS: 1
