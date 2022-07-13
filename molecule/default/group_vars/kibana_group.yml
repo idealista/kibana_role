@@ -1,6 +1,6 @@
 ---
 install_mode: tar
-kibana_version: 7.13.2
+kibana_version: 7.17.4
 kibana_license_type: basic
 
 elasticsearch_api_host: kibana
@@ -23,6 +23,7 @@ elasticsearch_config:
   node.data: true
   node.master: true
   node.ingest: false
+  xpack.ml.enabled: false
 
 elasticsearch_heap_size: "256m"
 elasticsearch_os_tuning: false
