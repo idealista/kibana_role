@@ -12,6 +12,8 @@
     - "{{ kibana_log_dir }}"
     - "{{ kibana_pid_dir }}"
     - "{{ kibana_data_dir }}"
+  tags:
+    - kibana_configure
 
 - name: Kibana | Configuring Kibana
   template:
@@ -21,6 +23,8 @@
     group: "{{ kibana_group }}"
     mode: 0644
   notify: restart kibana
+  tags:
+    - kibana_configure
 
 - name: Kibana | Create systemd service
   template:
@@ -29,3 +33,5 @@
     mode: 0644
   notify:
     - restart kibana
+  tags:
+    - kibana_configure

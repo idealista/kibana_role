@@ -9,7 +9,7 @@ lint: |
 platforms:
   - name: kibana
     hostname: kibana
-    image: ${MOLECULE_DISTRO:-idealista/jdk:11.0.8-buster-openjdk-headless}
+    image: ${MOLECULE_DISTRO:-idealista/jdk:11.0.14-buster-openjdk-headless}
     privileged: false
     capabilities:
       - SYS_ADMIN

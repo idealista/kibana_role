@@ -7,6 +7,8 @@
   when: not kibana_opendistro_security_enabled
   changed_when: false
   register: security_installed_check
+  tags:
+    - kibana_configure
 
 - name: Kibana | Disable security plugin of kibana
   command:
@@ -16,3 +18,5 @@
   when: not kibana_opendistro_security_enabled and 'opendistroSecurityKibana' in security_installed_check.stdout
   changed_when: false
   notify: restart
+  tags:
+    - kibana_configure

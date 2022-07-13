@@ -1,6 +1,6 @@
 ---
 install_mode: deb
-kibana_version: 7.13.2
+kibana_version: 7.17.4
 kibana_license_type: basic
 
 elasticsearch_api_host: kibana
