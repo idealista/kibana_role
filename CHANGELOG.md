@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
 
+## [2.1.0](https://github.com/idealista/kibana_role/tree/2.1.0)
 ### Added
 - *Add fqcn to warn-list due to ansible-lint* @adrian-arapiles
 - *Add tags on tasks* @adrian-arapiles
