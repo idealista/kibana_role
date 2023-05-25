@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
+### Added
+Add support for debian bullseye. @adrian-arapiles  
+### Changed
+*[22](https://github.com/idealista/kibana_role/issues/22)* Remove support of archived opendistro project. @adrian-arapiles
+Removed tests for debian stretch. @adrian-arapiles  
+Updated test-requirements dependencies. @adrian-arapiles  
 
 ## [2.1.0](https://github.com/idealista/kibana_role/tree/2.1.0)
 ### Added

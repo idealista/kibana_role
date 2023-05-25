@@ -6,24 +6,7 @@ install_mode: tar
 
 # You can see default version in vars/{{ install_mode }}.yml
 kibana_version: "{{ __kibana_version }}"
-# By default role install oss version, change this value to 'basic' if you want official distribution
-# PD. Check version too because oss and official mismatch version release.
-kibana_license_type: "{{ __kibana_license_type }}"
-
-## Opendistro
-# You can see default version in vars/opendistro.yml
-# Please check (https://opendistro.github.io/for-elasticsearch-docs/version-history/) elastic-oss and opendistro
-# version to configure properly the compatibility of both
-opendistro_version: "{{ __opendistro_version }}"
-# State of opendistrokibana deb package
-opendistro_package_state: "{{ __opendistro_package_state }}"
-opendistro_gpg_key: "{{ __opendistro_gpg_key }}"
-opendistro_ppa_source: "{{ __opendistro_ppa_source }}"
-# By default opendistro is not installed, set this to true for install opendistro
-install_opendistro: false
-# By default security is disabled. If you want to enable put true and configure steps and file config
-# https://opendistro.github.io/for-elasticsearch-docs/docs/security/configuration/
-kibana_opendistro_security_enabled: false
+kibana_major_version: "{{ __kibana_major_version }}"
 
 ## Deb
 # State of kibana deb package
@@ -34,6 +17,8 @@ kibana_ppa_source: "{{ __kibana_ppa_source }}"
 ## Tar
 # List of templates to kibana conf folder, for example kibana.yml
 kibana_config_templates_files: "{{ __kibana_config_templates_files }}"
+# Platform available: linux-x86_64, darwin-x86_64, darwin-aarch64, linux-aarch64
+kibana_platform: linux-x86_64
 # Force to reinstall kibana even if is same version installed
 kibana_force_reinstall: false
 
@@ -49,9 +34,9 @@ kibana_service_enabled: "{{ __kibana_service_enabled }}"
 kibana_service_state: "{{ __kibana_service_state }}"
 
 kibana_private_tmp: false
-# If want to apply any extra config to kibana.service
+# If you want to apply any extra config to kibana.service
 kibana_service_config_path: /etc/systemd/system/kibana.service.d
-# If want to apply environment variables
+# If you want to apply environment variables
 # You can see examples in any molecule scenario of this repo
 # kibana_service_dropin_template: "{{ playbook_dir }}/templates/kibana/service.conf"
 
@@ -67,6 +52,7 @@ kibana_pid_dir: "/run/{{ kibana_runtime_dir }}"
 # Extra config to kibana.yml
 # kibana_config:
 #   xpack.monitoring.kibana.collection.enabled: false
+kibana_config: "{{ kibana_config_extended | default({}) | combine(__kibana_default_config) }}"
 
 # Hosts & ports
 kibana_server_host: "0.0.0.0"

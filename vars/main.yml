@@ -1,10 +1,7 @@
 ---
 ## General
-__kibana_version: 7.10.2
-__kibana_license_type: oss
-
-kibana_basic_license: kibana
-kibana_oss_license: kibana-oss
+__kibana_version: 8.7.1
+__kibana_major_version: "{{ kibana_version.split('.')[0] }}"
 
 ## Service
 # Start on boot
@@ -12,3 +9,11 @@ __kibana_service_enabled: true
 
 # Current state: started, stopped
 __kibana_service_state: started
+
+__kibana_default_config:
+  server:
+    port: "{{ kibana_server_port }}"
+    host: "{{ kibana_server_host }}"
+  elasticsearch.hosts: "{{ kibana_elasticsearch_hosts | to_json }}"
+  path.data: "{{ kibana_data_dir }}"
+  pid.file: "{{ kibana_pid_dir }}/kibana.pid"

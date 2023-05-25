@@ -1,38 +1,13 @@
 ---
-- name: Kibana | Define vars
-  block:
-  - name: Kibana | Include vars for {{ install_mode }}
-    include_vars: vars/{{ install_mode }}.yml
-
-  - name: Kibana | Define elasticsearch major version
-    set_fact:
-      kibana_major_version: "{{ kibana_version.split('.')[0] }}"
-
-  - name: Kibana | Define kibana variables
-    set_fact:
-      kibana_license: "{{ lookup('vars', 'kibana_' ~ kibana_license_type ~ '_license') }}"
-  tags:
-    - always
+- name: Kibana | Include vars for {{ install_mode }}
+  include_vars: vars/{{ install_mode }}.yml
 
 - name: Kibana | Install
   include_tasks: install.yml
   tags:
     - kibana_install
-  when: not install_opendistro
-
-- name: Kibana | Install opendistro
-  include_tasks: install-opendistro.yml
-  tags:
-    - kibana_install
-  when: install_opendistro
 
 - name: Kibana | Configure
   include_tasks: config.yml
   tags:
     - kibana_configure
-
-- name: Kibana | Configure opendistro
-  include_tasks: config-opendistro.yml
-  tags:
-    - kibana_configure
-  when: install_opendistro

@@ -14,3 +14,7 @@ __kibana_data_dir: /var/lib/kibana
 
 __kibana_config_templates_files:
   - kibana.yml.j2
+
+## Elastic.co ppa
+__kibana_gpg_key: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+__kibana_ppa_source: "deb https://artifacts.elastic.co/packages/{{ kibana_major_version }}.x/apt stable main"
