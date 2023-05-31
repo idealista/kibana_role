@@ -8,9 +8,13 @@ install:
   - pip install pipenv
   - pipenv sync
 env:
+  global:
+    - PIPENV_IGNORE_VIRTUALENVS=1
   jobs:
-    - MOLECULE_DISTRO=idealista/jdk:11.0.6-stretch-openjdk-headless JAVA_JDK_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-    - MOLECULE_DISTRO=idealista/jdk:11.0.14-buster-openjdk-headless JAVA_JDK_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    - MOLECULE_DISTRO=idealista/jdk:11.0.16-buster-openjdk-headless JAVA_JDK_HOME=/usr/lib/jvm/java-11-openjdk-amd64 KIBANA_VERSION=7.17.10
+    - MOLECULE_DISTRO=idealista/jdk:11.0.16-bullseye-openjdk-headless JAVA_JDK_HOME=/usr/lib/jvm/java-11-openjdk-amd64 KIBANA_VERSION=7.17.10
+    - MOLECULE_DISTRO=debian:buster-slim KIBANA_VERSION=8.7.1
+    - MOLECULE_DISTRO=debian:bullseye-slim KIBANA_VERSION=8.7.1
 script:
   - pipenv run molecule test --all
 

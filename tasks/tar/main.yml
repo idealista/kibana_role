@@ -2,14 +2,6 @@
 - name: Kibana | Include vars for {{ install_mode }}
   include_vars: vars/{{ install_mode }}.yml
 
-- name: Kibana | Define kibana_license when oss
-  set_fact:
-    kibana_license: "{{ lookup('vars', 'kibana_' ~ kibana_license_type ~ '_license') }}"
-
-- name: Kibana | Define kibana_major_version
-  set_fact:
-    kibana_major_version: "{{ kibana_version.split('.')[0] }}"
-
 - name: Kibana | Install
   include_tasks: install.yml
   tags:
