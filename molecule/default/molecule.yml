@@ -33,8 +33,9 @@ provisioner:
   inventory:
     group_vars:
       kibana_group:
-        java_open_jdk_home: ${JAVA_JDK_HOME:-/usr/lib/jvm/java-11-openjdk-amd64}
-        kibana_version: ${KIBANA_VERSION:-7.17.4}
+        java_open_jdk_home: ${JAVA_JDK_HOME:-''}
+        kibana_version: ${KIBANA_VERSION:-7.17.10}
+        kibana_platform: ${KIBANA_PLATFORM:-linux-x86_64}
   env:
     ANSIBLE_FORCE_COLOR: 1
     PY_COLORS: 1

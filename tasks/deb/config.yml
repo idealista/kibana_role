@@ -17,6 +17,9 @@
     - kibana_configure
 
 - name: Create and config drop-in service config
+  when: kibana_service_dropin_template is defined
+  tags:
+    - kibana_configure
   block:
     - name: Create kibana drop-in service config
       file:
@@ -33,18 +36,15 @@
         owner: "{{ kibana_user }}"
         group: "{{ kibana_group }}"
         mode: 0644
-  when: kibana_service_dropin_template is defined
-  tags:
-    - kibana_configure
 
 - name: Kibana | Configuring Kibana
   template:
     src: "{{ item }}"
-    dest: "{{ kibana_conf_dir }}/{{ item | basename | regex_replace('.j2','') }}"
+    dest: "{{ kibana_conf_dir }}/{{ item | basename | regex_replace('.j2', '') }}"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
     mode: 0644
   loop: "{{ kibana_config_templates_files }}"
-  notify: restart kibana
+  notify: Restart kibana
   tags:
     - kibana_configure

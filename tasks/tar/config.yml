@@ -22,7 +22,7 @@
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
     mode: 0644
-  notify: restart kibana
+  notify: Restart kibana
   tags:
     - kibana_configure
 
@@ -32,6 +32,6 @@
     dest: "{{ kibana_systemd_file }}"
     mode: 0644
   notify:
-    - restart kibana
+    - Restart kibana
   tags:
     - kibana_configure

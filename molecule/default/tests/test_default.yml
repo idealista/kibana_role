@@ -21,3 +21,7 @@ service:
   kibana:
     enabled: true
     running: true
+
+http:
+  http://{{ inventory_hostname }}:{{ kibana_server_port }}/status:
+    status: 200

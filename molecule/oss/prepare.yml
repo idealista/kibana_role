@@ -1,7 +1,0 @@
----
-- name: Prepare
-  hosts: kibana
-  tasks:
-    - name: Install Elasticsearch
-      include_role:
-        name: elasticsearch

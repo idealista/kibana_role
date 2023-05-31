@@ -7,6 +7,6 @@ parseable: true
 skip_list:
   - '204'
 warn_list:
-  - fqcn-builtins
+  - fqcn
 use_default_rules: true
 verbosity: 1
