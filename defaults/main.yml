@@ -53,7 +53,7 @@ kibana_pid_dir: "/run/{{ kibana_runtime_dir }}"
 # Extra config to kibana.yml
 # kibana_config:
 #   xpack.monitoring.kibana.collection.enabled: false
-kibana_config: "{{ kibana_config_extended | default({}) | combine(__kibana_default_config) }}"
+kibana_config: "{{ kibana_config_extended | default({}) | combine(__kibana_default_config, recursive=True) }}"
 
 # Hosts & ports
 kibana_server_host: "0.0.0.0"
