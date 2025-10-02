@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased](https://github.com/idealista/kibana_role/tree/develop)
 
+## [3.0.3](https://github.com/idealista/kibana_role/tree/3.0.3)
+### Fixed
+Fix combine with recursive=True to properly merge deep keys one by one. @adrian-arapiles
+
 
 ## [3.0.2](https://github.com/idealista/kibana_role/tree/3.0.2)
 ### Fixed
